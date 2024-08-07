@@ -3,9 +3,29 @@ import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
 
+const cardsData = [{
+    text: "Suggest beautiful places to see an upcoming road trip",
+    img: assets.compass_icon,
+
+},
+{
+    text: "Briefly summarize this concept: urban playing",
+    img: assets.bulb_icon
+},
+{
+    text: "Brainstorm team bonding activities for our work retreat",
+    img: assets.message_icon
+},
+{
+    text: "Improve the readability  of the following code",
+    img: assets.code_icon
+},
+
+];
 const Main = () => {
 
     const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context)
+
 
     return (
         <div className='main'>
@@ -22,22 +42,15 @@ const Main = () => {
                             <p>How can I help you today?</p>
                         </div>
                         <div className="cards">
-                            <div className="card">
-                                <p>Suggest beautiful places to see an upcoming road trip</p>
-                                <img src={assets.compass_icon} alt="" />
-                            </div>
-                            <div className="card">
-                                <p>Briefly summarize this concept: urban playing</p>
-                                <img src={assets.bulb_icon} alt="" />
-                            </div>
-                            <div className="card">
-                                <p>Brainstorm team bonding activities for our work retreat</p>
-                                <img src={assets.message_icon} alt="" />
-                            </div>
-                            <div className="card">
-                                <p>Improve the readability  of the following code</p>
-                                <img src={assets.code_icon} alt="" />
-                            </div>
+                            {
+                                cardsData.map((card, index) => (
+                                    <div onClick={() => { onSent(card.text); setInput(card.text) }} key={index} className="card">
+                                        <p>{card.text}</p>
+                                        <img src={card.img} alt="" />
+                                    </div>
+                                ))
+                            }
+
                         </div>
                     </>
                     : <div className='result'>
