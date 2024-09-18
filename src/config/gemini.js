@@ -1,11 +1,12 @@
 import {
   GoogleGenerativeAI,
   HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai"
+  HarmBlockThreshold
+} from "@google/generative-ai";
+
 
 const MODEL_NAME = "gemini-1.5-flash"
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 async function runChat(prompt) {
   const genAI = new GoogleGenerativeAI(API_KEY)
@@ -15,7 +16,8 @@ async function runChat(prompt) {
     topP: 0.95,
     topK: 64,
     maxOutputTokens: 8192,
-  }
+    responseMimeType: "text/plain",
+  };
 
   const safetySettings = [
     {
@@ -42,10 +44,10 @@ async function runChat(prompt) {
     history: [],
   })
 
-  const result = await chat.sendMessage(prompt)
-  const response = result.response
-  console.log(response.text())
-  return response.text()
+  const result = await chat.sendMessage(prompt);
+  const response = result.response;
+  console.log(response.text());
+  return response.text();
 }
 
 export default runChat
