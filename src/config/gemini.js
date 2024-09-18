@@ -5,7 +5,7 @@ import {
 } from "@google/generative-ai";
 
 
-const MODEL_NAME = "gemini-1.5-flash"
+const MODEL_NAME = "gemini-1.5-flash";
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 async function runChat(prompt) {
